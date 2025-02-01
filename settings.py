@@ -49,16 +49,10 @@ def init_groq() -> None:
         - Settings.embed_model: An instance of OpenAIEmbedding initialized with the
           specified API key and model.
     """
-    from llama_index.core.constants import DEFAULT_TEMPERATURE
     from llama_index.embeddings.huggingface import HuggingFaceEmbedding
-    from llama_index.llms.openai import OpenAI
+    from llama_index.llms.groq import Groq
 
-    Settings.llm = OpenAI(
-        base_url=Config.GROQ_BASE_URL,
-        api_key=Config.GROQ_API_KEY,
-        model=Config.GROQ_MODEL,
-        temperature=DEFAULT_TEMPERATURE,
-    )
+    Settings.llm = Groq(model=Config.GROQ_MODEL, api_key=Config.GROQ_API_KEY)
 
     Settings.embed_model = HuggingFaceEmbedding(
         model_name="BAAI/bge-large-en-v1.5",
